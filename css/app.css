@@ -1,0 +1,379 @@
+@charset "utf-8";
+
+/********** Global **********/
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "microsoft yahei", arial, sans-serif;
+    background: url("/img/bg.png") no-repeat;
+    background-color: #0b0f34;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    margin: 0 auto;
+    min-width: 375px;
+    max-width: 1920px;
+}
+
+/********** Layout **********/
+.header {
+    height: 120px;
+    line-height: 120px;
+    box-sizing: border-box;
+    background: url("/img/header-bg.png") no-repeat center center;
+    background-size: contain;
+    text-align: center;
+    font-size: 0;
+}
+
+.header-title {
+    width: 449px;
+    height: 40px;
+}
+
+.wrapper {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* padding: 10px 10px 0 10px; */
+    min-height: 500px;
+    box-sizing: border-box;
+}
+
+
+/********** Content **********/
+.content {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /* padding: 25px 15px; */
+    height: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.col {
+    /* margin: 0 10px; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.col-l {
+    width: 463px;
+    margin-left: 18px;
+}
+
+.col-c {
+    width: 715px;
+    margin: 0 17px;
+}
+
+.col-r {
+    width: 686px;
+    margin-right: 19px;
+}
+
+
+.xpanel-wrapper {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.xpanel-wrapper-l-t {
+    height: 342px;
+}
+
+.xpanel-wrapper-l-c {
+    height: 302px;
+}
+
+.xpanel-wrapper-l-b {
+    height: 312px;
+}
+
+.xpanel-wrapper-r-t {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 209px;
+    box-sizing: border-box;
+}
+
+.xpanel-wrapper-c-b {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 222px;
+    box-sizing: border-box;
+}
+
+
+.xpanel-wrapper-r-b {
+    height: 765px;
+}
+
+.xpanel-wrapper-r-t-l,
+.xpanel-wrapper-r-t-r {
+    height: 209px;
+    width: 330px;
+}
+
+.xpanel-wrapper-c-b-l {
+    height: 222px;
+    width: 363px;
+}
+
+.xpanel-wrapper-c-b-r {
+    height: 222px;
+    width: 346px;
+}
+
+.xpanel-wrapper-c-t {
+    height: 500px;
+    width: 713px;
+}
+
+.xpanel-wrapper-c-c {
+    height: 237px;
+    width: 713px;
+}
+
+
+.xpanel {
+    height: 100%;
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+}
+
+.xpanel-l-t {
+    background-image: url("../img/panel-l-t.png");
+}
+
+.xpanel-l-c {
+    background-image: url("../img/panel-l-c.png");
+}
+
+.xpanel-l-b {
+    background-image: url("../img/panel-l-b.png");
+}
+
+.xpanel-c-c {
+    background-image: url("../img/panel-c-c.png");
+}
+
+.xpanel-c-b-l {
+    background-image: url("../img/panel-c-b-l.png");
+}
+
+.xpanel-c-b-r {
+    background-image: url("../img/panel-c-b-r.png");
+}
+
+
+.xpanel-r-t-l {
+    background-image: url("../img/panel-r-t-l.png");
+}
+
+.xpanel-r-t-r {
+    background-image: url("../img/panel-r-t-r.png");
+}
+
+
+.xpanel-r-b {
+    background-image: url("../img/panel-r-b.png");
+}
+
+.xpanel-c-c-t{
+    display: flex;
+    height: 112px;
+    color: #abcbff;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    background: url("../img/panel-dash-bg.png") no-repeat left bottom;
+    padding: 16px 0;
+    box-sizing: border-box;
+}
+
+.xpanel-c-c-t .item{
+    flex: 1;
+    background: url("../img/panel-inner-border.png") no-repeat right center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.xpanel-c-c-t .item .item-desc{
+    font-size: 18px;
+    color: #ee4356;
+}
+
+.xpanel-c-c-t .item .item-desc b{
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.xpanel-c-c-b{
+    width: 100%;
+    height: calc(100% - 112px);
+    font-size: 12px;
+    color: #fff;
+}
+
+.xpanel-c-c-b-title{
+    width: 100%;
+    text-align: center;
+    margin: 15px;
+}
+
+.xpanel-c-c-b-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.c-b-item{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.c-b-item img{
+    margin-bottom: 5px;
+}
+
+.xpanel-c-c-b span{
+    color: #ffa612;
+}
+
+.xpanel .title {
+    width: 100%;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #00dfff;
+
+}
+
+.xpanel .chart{
+    height:calc(100% - 32px);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.xpanel-chart{
+    height:calc(100% - 32px);
+    box-sizing: border-box;
+}
+
+.xpanel-chart-title{
+    background-image: url("../img/chart-title-bg.png");
+    background-size: 100% 100%;
+    box-sizing: border-box;
+    height: 28px;
+    color: #00dfff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.xpanel-chart-container{
+    width: 100%;
+    height: calc(100% - 28px);
+}
+.xpanel-chart-t{
+    height: 260px;
+    margin-bottom: 13px;
+  
+}
+
+.xpanel-chart-c{
+    height: 220px;
+    margin-bottom: 10px;
+    padding: 0 8px 0 8px;
+ 
+}
+
+.xpanel-chart-b{
+    height: 220px;
+    margin-bottom: 10px;
+    padding: 0 8px 0 8px;
+   
+}
+
+.xpanel-chart-b-container{
+    display: flex;
+}
+
+.xpanel-chart-container-l{
+    flex: 4;
+}
+
+.xpanel-chart-container-r{
+    flex: 6;
+}
+
+.mapChart1{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom:0;
+    right: 0;
+    z-index: -1;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-bg {
+    background: none !important;
+}
+
+.no-border {
+    border: 0 !important;
+}
+
+.anchorBL{
+
+    display:none;
+    
+    }
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
