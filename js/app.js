@@ -112,6 +112,136 @@ function initChart1() {
 }
 
 
+//chart1  各区域垃圾汇总
+function initChart2() {
+    option= {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'none'
+			},
+			formatter: function(params) {
+			    console.log(params);
+				return params[0].seriesName+'<br/>'+params[0].name + ': ' + params[0].value;
+			}
+		},
+		grid: {
+			left: '3%',
+			right: '10%',
+			bottom: '6%',
+			containLabel: true
+		},
+		title: {
+            text: '',
+            show:false
+		},
+		xAxis: {
+			data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+            name: '入学年份',
+            boundaryGap: true,
+            axisLine: { //坐标轴轴线相关设置。数学上的x轴
+                show: true,
+                lineStyle: {
+                    color: '#000'
+                },
+            },
+            axisLabel: { //坐标轴刻度标签的相关设置
+                textStyle: {
+                    color: '#fff',
+                    margin: 15,
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+		},
+		yAxis: [{
+			name: '重量/kg',
+			type: 'value' ,
+            // max: 140,
+            splitNumber: 7,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#0a3256'
+                }
+            },
+            axisLine: {
+                show: false,
+            },
+            axisLabel: {
+                margin: 20,
+                textStyle: {
+                    color: '#d1e6eb',
+
+                },
+            },
+            axisTick: {
+                show: false,
+            },
+		},{
+            type: 'value',
+            name: '百分比',
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#666'
+                }
+            },
+            position: 'right',
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }],
+		series: [{
+			name: '每年人数统计',
+			type: 'pictorialBar',
+			barCategoryGap: '0%',
+			label: {
+				normal: {
+					show: false,
+					position: 'top'
+				}
+			},
+			//symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+			symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+			itemStyle: {
+				normal: {
+                     color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,                                          //左、下、右、上
+                        [
+                            { offset: 0, color: '#f900ff' },                   //柱图渐变色
+                            { offset: 1, color: '#01b1ff' },                   //柱图渐变色
+                        ]
+                    ),
+				},
+				emphasis: {
+					opacity: 1
+				}
+			},
+			data: [150, 160, 115, 170, 187, 188, 90],
+			z: 10
+		},{
+            name: '湿度',
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+                color: "#89C3F8"
+            },
+            data:  [150, 160, 115, 170, 187, 188, 90]
+        }]
+	};
+
+    var chart2 = echarts.init(document.getElementById('chart2'));
+
+    chart2.setOption(option);
+}
+
 
 //chart3  总品类回收量
 
@@ -656,69 +786,108 @@ function initChart7() {
 
 function initChart8() {
     var option = {
+        color:["#34d160","#ff753f","#69d2fa","#6cefb1","#8a00e1","#f481fd","#edb23d","#ff3d3d","#a6fa91","#0278e7"],
         title: {
-            text: '堆叠区域图'
+            text: '',
+            show:false
         },
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-        },
-        toolbox: {
-            feature: {
-                saveAsImage: {}
-            }
+            textStyle:{color:"#fff",fontSize:10},
+            data: ['厨余' ,'纸类', '织物','金属', '塑料','电池' ,'药品', '其他','可回收', '灯泡灯管']
         },
         grid: {
             left: '3%',
             right: '4%',
             bottom: '3%',
+            top:"10%",
             containLabel: true
         },
         xAxis: [
             {
                 type: 'category',
                 boundaryGap: false,
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                data: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14'],
+                axisLine: {
+                    lineStyle: {
+                        color: "#9dbaed"
+                    }
+                },
+                axisLabel:{
+                    show:true,
+                    color:"#fff"
+                }
             }
         ],
         yAxis: [
             {
-                type: 'value'
+                type: 'value',
+                name:"重量/kg",
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: 'dashed',
+                        color: '#024184',
+                        opacity:1
+                    }
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: "#9dbaed",
+                        fontSize:10
+                    },
+                },
+                axisLabel:{
+                    show:true,
+                    color:"#fff"
+                },
+                nameTextStyle: {
+                    color: "#9dbaed",
+                    fontSize:10
+                },
+                splitArea: {
+                    show: false
+                }
             }
         ],
         series: [
             {
-                name: '邮件营销',
+                name: '厨余',
                 type: 'line',
                 stack: '总量',
                 areaStyle: { normal: {} },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: [120, 132, 101, 134, 90, 230, 210],
+                smooth: true
             },
             {
-                name: '联盟广告',
+                name: '纸类',
                 type: 'line',
                 stack: '总量',
                 areaStyle: { normal: {} },
-                data: [220, 182, 191, 234, 290, 330, 310]
+                data: [220, 182, 191, 234, 290, 330, 310],
+                smooth: true
             },
             {
-                name: '视频广告',
+                name: '织物',
                 type: 'line',
                 stack: '总量',
                 areaStyle: { normal: {} },
-                data: [150, 232, 201, 154, 190, 330, 410]
+                data: [150, 232, 201, 154, 190, 330, 410],
+                smooth: true
             },
             {
-                name: '直接访问',
+                name: '塑料',
                 type: 'line',
                 stack: '总量',
                 areaStyle: { normal: {} },
-                data: [320, 332, 301, 334, 390, 330, 320]
+                data: [320, 332, 301, 334, 390, 330, 320],
+                smooth: true
             },
             {
-                name: '搜索引擎',
+                name: '电池',
                 type: 'line',
                 stack: '总量',
                 label: {
@@ -728,7 +897,8 @@ function initChart8() {
                     }
                 },
                 areaStyle: { normal: {} },
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                smooth: true
             }
         ]
     };
@@ -741,64 +911,182 @@ function initChart8() {
 //chart9 垃圾数据时间分布情况
 function initChart9() {
     var option = {
-        title: {
-            text: '折线图堆叠'
-        },
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+           show:false
         },
         grid: {
+            // top: 'middle',
+            show:false,
             left: '3%',
             right: '4%',
             bottom: '3%',
+            top: '30%',
             containLabel: true
-        },
-        toolbox: {
-            feature: {
-                saveAsImage: {}
-            }
         },
         xAxis: {
             type: 'category',
-            boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            data: [100,200,20,30,60,89],
+            axisLine: {
+                lineStyle: {
+                    color: "#9dbaed"
+                }
+            },
+            axisLabel:{
+                show:true,
+                color:"#fff"
+            },
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            name:"重量/kg",
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    type: 'dashed',
+                    color: '#024184',
+                    opacity:1
+                }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: "#9dbaed",
+                    fontSize:10
+                },
+            },
+            axisLabel:{
+                show:true,
+                color:"#fff"
+            },
+            nameTextStyle: {
+                color: "#9dbaed",
+                fontSize:10
+            },
+            splitArea: {
+                show: false
+            }
         },
-        series: [
-            {
-                name: '邮件营销',
+        series: [{
+                name: '新报',
                 type: 'line',
-                stack: '总量',
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: [800,900,220,130,660,289],
+                color: "#F58080",
+                lineStyle: {
+                    normal: {
+                        width: 5,
+                        color: {
+                            type: 'linear',
+    
+                            colorStops: [{
+                                offset: 0,
+                                color: '#FFCAD4' // 0% 处的颜色
+                            }, {
+                                offset: 0.4,
+                                color: '#F58080' // 100% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: '#F58080' // 100% 处的颜色
+                            }],
+                            globalCoord: false // 缺省为 false
+                        },
+                        shadowColor: 'rgba(245,128,128, 0.5)',
+                        shadowBlur: 10,
+                        shadowOffsetY: 7
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#F58080',
+                        borderWidth: 10,
+                        /*shadowColor: 'rgba(72,216,191, 0.3)',
+                         shadowBlur: 100,*/
+                        borderColor: "#F58080"
+                    }
+                },
+                smooth: true
             },
             {
-                name: '联盟广告',
+                name: '流失',
                 type: 'line',
-                stack: '总量',
-                data: [220, 182, 191, 234, 290, 330, 310]
+                data: [123,568,111,222,123,56],
+                lineStyle: {
+                    normal: {
+                        width: 5,
+                        color: {
+                            type: 'linear',
+    
+                            colorStops: [{
+                                    offset: 0,
+                                    color: '#AAF487' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.4,
+                                    color: '#47D8BE' // 100% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: '#47D8BE' // 100% 处的颜色
+                                }
+                            ],
+                            globalCoord: false // 缺省为 false
+                        },
+                        shadowColor: 'rgba(71,216,190, 0.5)',
+                        shadowBlur: 10,
+                        shadowOffsetY: 7
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#AAF487',
+                        borderWidth: 10,
+                        /*shadowColor: 'rgba(72,216,191, 0.3)',
+                         shadowBlur: 100,*/
+                        borderColor: "#AAF487"
+                    }
+                },
+                smooth: true
             },
             {
-                name: '视频广告',
+                name: '续费',
                 type: 'line',
-                stack: '总量',
-                data: [150, 232, 201, 154, 190, 330, 410]
-            },
-            {
-                name: '直接访问',
-                type: 'line',
-                stack: '总量',
-                data: [320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name: '搜索引擎',
-                type: 'line',
-                stack: '总量',
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
+                data: [125,568,25,36,784,56],
+                lineStyle: {
+                    normal: {
+                        width: 5,
+                        color: {
+                            type: 'linear',
+    
+                            colorStops: [{
+                                    offset: 0,
+                                    color: '#F6D06F' // 0% 处的颜色
+                                },
+                                {
+                                    offset: 0.4,
+                                    color: '#F9A589' // 100% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: '#F9A589' // 100% 处的颜色
+                                }
+                            ],
+                            globalCoord: false // 缺省为 false
+                        },
+                        shadowColor: 'rgba(249,165,137, 0.5)',
+                        shadowBlur: 10,
+                        shadowOffsetY: 7
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#F6D06F',
+                        borderWidth: 10,
+                        /*shadowColor: 'rgba(72,216,191, 0.3)',
+                         shadowBlur: 100,*/
+                        borderColor: "#F6D06F"
+                    }
+                },
+                smooth: true
             }
         ]
     };
@@ -811,66 +1099,95 @@ function initChart9() {
 
 //chart10 垃圾数据周分布情况
 function initChart10() {
-    var option = {
-        color: ['#e43446', '#ebc017', '#43c798', "#ac4ed3"],//数据蛛网线条的颜色，示例中为红黄绿
+    var data = [{
+        name: '周日',
+        value: 7311
+    }, {
+        name: '周六',
+        value: 7589
+    }, {
+        name: '周五',
+        value: 4900
+    }, {
+        name: '周四',
+        value: 5132
+    }, {
+        name: '周三',
+        value: 5267
+    }, {
+        name: '周二',
+        value: 5689
+    }, {
+        name: '周一',
+        value: 7100
+    }];
     
+    
+    var option = {
+       
         legend: { //图例的设置
             show: false
         
         },
         radar: [{//每个网格的指数名称，类似于X轴或Y轴上的数据的值大小
             indicator: [{
-                text: '阅读能力',
-                max: 100
+                text: '周一',
+                max: 10000
             },
             {
-                text: '听力能力',
-                max: 100
+                text: '周二',
+                max: 10000
             },
             {
-                text: '朗读能力',
-                max: 100
+                text: '周三',
+                max: 10000
             },
             {
-                text: '对话能力',
-                max: 100
+                text: '周四',
+                max: 10000
             },
             {
-                text: '写作能力',
-                max: 100
+                text: '周五',
+                max: 10000
             },
             {
-                text: '对我的',
-                max: 100
+                text: '周六',
+                max: 10000
+            }, {
+                text: '周日',
+                max: 10000
             }
             ],
             center: ['50%', '50%'],//统计图位置，示例是居中
             radius: '70%',//统计图大小
             startAngle: 90,//统计图起始的角度
-            splitNumber: 3,//统计图蛛网的网格分段，示例分为三段
-            // shape: 'circle',//蛛网是圆角还是尖角
+            splitNumber: 5,//统计图蛛网的网格分段，示例分为三
             name: {
                 formatter: '{value}',//蛛网轴尖的数据名称
                 textStyle: {//蛛网轴尖的文字样式
-                    fontSize: 14, //外圈标签字体大小
-                    color: '#5b81cb' //外圈标签字体颜色
+                    fontSize: 10, //外圈标签字体大小
+                    color: '#fff' //外圈标签字体颜色
                 }
             },
-            splitArea: { // 蛛网在 grid 区域中的分隔区域，默认不显示。
+            splitArea: { // 坐标轴在 grid 区域中的分隔区域，默认不显示。
                 show: true,
                 areaStyle: { // 分隔区域的样式设置。
-                    color: ['rgba(76, 140, 200, 0.05)', 'rgba(76, 140, 200, 0.1)'], // 分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。
+                    color: ['#21293d'], // 分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。
+    
+    
+                }
+    
+            },
+            axisLine: { //指向外圈文本的分隔线样式
+                lineStyle: {
+                    color: '#fff',
+                    opacity:0.2
                 }
             },
-            axisLine: { //蛛网轴线上的颜色，由内向外发散的那条
+            splitLine: {
                 lineStyle: {
-                    color: '#153269'
-                }
-            },
-            splitLine: {//蛛网环形的线条颜色
-                lineStyle: {
-                    color: '#113865', // 分隔线颜色
-                    width: 1, // 分隔线线宽
+                    color: '#fff',
+                    opacity:0.2
                 }
             }
         },],
@@ -880,187 +1197,75 @@ function initChart10() {
             itemStyle: {//数据样式设置
                 emphasis: {//鼠标悬浮效果
                     lineStyle: {
-                        width: 4//线条粗细变成4
+                        width: 1//线条粗细变成4
                     }
                 }
             },
             data: [{
-                name: '张䉈',//数据名称
-                value: [85, 65, 55, 90, 82],
+                name: '',//数据名称
+                value: [7100, 6500, 5500, 9000, 8200,2000,7800],
+                areaStyle: {
+                    normal: {
+                        color: '#34d060',
+                        opacity:0.5
+                    },
+                },
+            }, {
+                name: '',
+                value: [5000, 2000, 4500, 3000, 7500,8900,2100],
+                areaStyle: {
+                    normal: {
+                      color:"#69d2fa",
+                      opacity:0.5
+                    }
+                },
+            }, {
+                name: '',
+                value: [3700, 8000, 1200, 5000, 2500,4500,5600],
+                areaStyle: {
+                    normal: {
+                        color:"#8a00e0",
+                        opacity:0.5
+                    }
+                },
+            }, {
+                name: '',//数据名称
+                value: [3500, 6100, 9500, 4000, 8200,4800,3600],
                 areaStyle: {
                     normal: { // 单项区域填充样式
-                        color: {
-                            x: 0, //右
-                            y: 0, //下
-                            x2: 1, //左
-                            y2: 1, //上
-                            colorStops: [{
-                                offset: 0,
-                                color: 'rgba(228,52,70,0.5)'
-                            }, {
-                                offset: 0.5,
-                                color: 'rgba(0,0,0,0)'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(228,52,70,0.5)'
-                            }],
-                        },
-                        opacity: 1 // 区域透明度
+                        color:"#edb23d",
+                        opacity:0.5
                     }
-                },
-                symbolSize: 2.5, // 单个数据标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。
-                label: { // 单个拐点文本的样式设置                            
-                    normal: { // 单个拐点文本的样式设置。[ default: false ]
-                        position: 'top', // 标签的位置。[ default: top ]
-                        distance: 4, // 距离图形元素的距离。当 position 为字符描述值（如 'top'、'insideRight'）时候有效。[ default: 5 ]
-                        color: '#ccc', // 文字的颜色。如果设置为 'auto'，则为视觉映射得到的颜色，如系列色。[ default: "#fff" ]
-                        fontSize: 14, // 文字的字体大小
-                    },
-                    emphasis: {
-                        show: true,
-                        formatter: '{c}'//显示分析的数字值，a为统计图名称，b为学生姓名,c为学生这项能力的值
-                    }
-                },
-                itemStyle: {
-                    normal: { //图形悬浮效果
-                        borderColor: '#ccc',//单个数据标记描边的颜色
-                        borderWidth: 2.5//单个数据标记描边的大小
-                    }
-                },
+                }
             }, {
-                name: '李鸶',
-                value: [50, 20, 45, 30, 75],
-                symbolSize: 2.5,
-                itemStyle: {
-                    normal: {
-                        borderColor: '#ccc',
-                        borderWidth: 2.5,
-                    }
-                },
-                areaStyle: {
-                    normal: {
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 1,
-                            y2: 1,
-                            colorStops: [{
-                                offset: 0,
-                                color: 'rgba(235,192,23,0.5)'
-                            }, {
-                                offset: 0.5,
-                                color: 'rgba(0,0,0,0)'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(235,192,23,0.5)'
-                            }],
-                        },
-                        opacity: 1
-                    }
-                },
-                label: {
-                    normal: {
-                        position: 'top',
-                        distance: 4,
-                        color: '#ccc',
-                        fontSize: 14,
-                    },
-                    emphasis: {
-                        show: true,
-                        formatter: '{c}'
-                    }
-                },
-            }, {
-                name: '王鋈',
-                value: [37, 80, 12, 50, 25],
-                symbolSize: 2.5,
-                itemStyle: {
-                    normal: {
-                        borderColor: '#ccc',
-                        borderWidth: 2.5,
-                    }
-                },
-                areaStyle: {
-                    normal: {
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 1,
-                            y2: 1,
-                            colorStops: [{
-                                offset: 0,
-                                color: 'rgba(67,199,152,0.5)'
-                            }, {
-                                offset: 0.5,
-                                color: 'rgba(0,0,0,0)'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(67,199,152,0.5)'
-                            }],
-                            globalCoord: false
-                        },
-                        opacity: 1
-                    }
-                },
-                label: {
-                    normal: {
-                        position: 'top',
-                        distance: 4,
-                        color: '#ccc',
-                        fontSize: 14,
-                    },
-                    emphasis: {
-                        show: true,
-                        formatter: '{c}'
-                    }
-                },
-            }, {
-                name: '张1䉈',//数据名称
-                value: [35, 61, 95, 40, 82],
+                name: '',//数据名称
+                value: [2500, 8100, 1500, 4700, 5200,9800,1600],
                 areaStyle: {
                     normal: { // 单项区域填充样式
-                        color: {
-                            x: 0, //右
-                            y: 0, //下
-                            x2: 1, //左
-                            y2: 1, //上
-                            colorStops: [{
-                                offset: 0,
-                                color: 'rgba(172,78,211,0.5)'
-                            }, {
-                                offset: 0.5,
-                                color: 'rgba(0,0,0,0)'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(172,78,211,0.5)'
-                            }],
-                        },
-                        opacity: 1 // 区域透明度
+                        color:"#ff3d3d",
+                        opacity:0.5
                     }
-                },
-                symbolSize: 2.5, // 单个数据标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。
-                label: { // 单个拐点文本的样式设置                            
-                    normal: { // 单个拐点文本的样式设置。[ default: false ]
-                        position: 'top', // 标签的位置。[ default: top ]
-                        distance: 4, // 距离图形元素的距离。当 position 为字符描述值（如 'top'、'insideRight'）时候有效。[ default: 5 ]
-                        color: '#ccc', // 文字的颜色。如果设置为 'auto'，则为视觉映射得到的颜色，如系列色。[ default: "#fff" ]
-                        fontSize: 14, // 文字的字体大小
-                    },
-                    emphasis: {
-                        show: true,
-                        formatter: '{c}'//显示分析的数字值，a为统计图名称，b为学生姓名,c为学生这项能力的值
+                }
+            }, {
+                name: '',//数据名称
+                value: [2500, 8100, 1500, 4700, 5200,9800,1600],
+                areaStyle: {
+                    normal: { // 单项区域填充样式
+                        color:"#ff743e",
+                        opacity:0.5
                     }
-                },
-                itemStyle: {
-                    normal: { //图形悬浮效果
-                        borderColor: '#ccc',//单个数据标记描边的颜色
-                        borderWidth: 2.5//单个数据标记描边的大小
+                }
+            }, {
+                name: '',//数据名称
+                value: [2500, 8100, 1500, 4700, 5200,9800,1600],
+                areaStyle: {
+                    normal: { // 单项区域填充样式
+                        color:"#a6fa91",
+                        opacity:0.5
                     }
-                },
-            },]
-        },]
+                }
+            }]
+        }]
     };
 
 
@@ -1070,190 +1275,138 @@ function initChart10() {
 }
 
 function initChart11() {
-    var myColor = ['#81E7ED']
-   var dataLine = [50, 66, 33, 25]
-   let positionLeft = 0.4,
-      max = 100 + 2*positionLeft
-   var option = {
-       backgroundColor: '#101E44',
-       grid: [
-           {
-           left: '8%',
-           top: '12%',
-           right: '5%',
-           bottom: '8%',
-           containLabel: true
-       },
-       {
-           left: '10%',
-           top: '12%',
-           right: '5%',
-           bottom: '8%',
-           containLabel: true
-       }
-           ],
-       xAxis: [{
-           max:max,
-           show: false
-       }],
-       yAxis: [{
-           axisTick: 'none',
-           axisLine: 'none',
-           offset: '27',
-           axisLabel: {
-               textStyle: {
-                   color: '#81E7ED',
-                   fontSize: '16'
-               }
-           },
-           data: ['智能科技', '人工科技', '智能装备制造', '核能科技']
-       }, {
-           axisTick: 'none',
-           axisLine: 'none',
-           show: false,
-           axisLabel: {
-               textStyle: {
-                   color: '#ffffff',
-                   fontSize: '16'
-               }
-           },
-           data: [1, 1, 1, 1]
-       }, {
-  
-           axisLine: {
-               lineStyle: {
-                   color: 'rgba(0,0,0,0)'
-               }
-           },
-           data: []
-       }],
-       series: [
-           
-          { //间距
-              type: 'bar',
-              barWidth: 15,
-              stack: 'b',
-              legendHoverLink: false,
-              itemStyle: {
-                  normal: {
-                      color: 'rgba(0,0,0,0)'
-                  }
-              },
-  
-              data: [positionLeft,positionLeft,positionLeft,positionLeft]
-          },{
-           name: '条',
-           type: 'bar',
-           stack: 'b',
-           yAxisIndex: 0,
-           data: dataLine,
-           label: {
-               normal: {
-                   show: false,
-                   position: 'right',
-                   distance: 10,
-                   formatter: function(param) {
-                       return param.value + '%'
-                   },
-                   textStyle: {
-                       color: '#ffffff',
-                       fontSize: '16'
-                   }
-               }
-           },
-           barWidth: 10,
-           itemStyle: {
-               normal: {
-                   color: function(params) {
-                       var num = myColor.length
-                       return myColor[params.dataIndex % num]
-                   }
-               }
-           },
-           z: 2
-       }, {
-           name: '白框',
-           type: 'bar',
-           yAxisIndex: 1,
-           barGap: '-100%',
-           data: [99.8, 99.9, 99.9, 99.9],
-           barWidth: 21,
-           itemStyle: {
-               normal: {
-                   color: '#0e2147',
-                   barBorderRadius: 2
-               }
-           },
-           z: 1
-       },
-       {
-           name: '外框',
-           type: 'bar',
-           yAxisIndex: 2,
-           barGap: '-100%',
-           data: [100, 100, 100, 100],
-           barWidth: 23,
-           label: {
-               normal: {
-                   show: true,
-                   position: 'right',
-                   distance: 10,
-                  formatter: function(data) {
-                      return dataLine[data.dataIndex] +"%";
-                  },
-                   textStyle: {
-                       color: '#ffffff',
-                       fontSize: '16'
-                   }
-               }
-           },
-           itemStyle: {
-               normal: {
-                   color: function(params) {
-                       var num = myColor.length
-                       return myColor[params.dataIndex % num]
-                   },
-                   barBorderRadius: 0
-               }
-           },
-           z: 0
-       },
-   /*     {
-           name: '白框',
-           type: 'bar',
-           yAxisIndex: 1,
-           barGap: '-100%',
-           data: [0, 0, 0, 0],
-           barWidth: 20,
-           itemStyle: {
-               normal: {
-                   color: '#0e2147',
-                   barBorderRadius: 0
-               }
-           },
-           z: 1
-       },
-       {
-           name: '外框',
-           type: 'bar',
-           yAxisIndex: 2,
-           barGap: '-100%',
-           data: [2, 3, 4, 5],
-           barWidth: 22,
-           itemStyle: {
-               normal: {
-                   color: function(params) {
-                       var num = myColor.length
-                       return myColor[params.dataIndex % num]
-                   },
-                   barBorderRadius: 0
-               }
-           },
-           z: 0
-       }*/
-       
-       ]
-   }
+    var data = [{
+        name: '周日',
+        value: 7311
+    }, {
+        name: '周六',
+        value: 7589
+    }, {
+        name: '周五',
+        value: 4900
+    }, {
+        name: '周四',
+        value: 5132
+    }, {
+        name: '周三',
+        value: 5267
+    }, {
+        name: '周二',
+        value: 5689
+    }, {
+        name: '周一',
+        value: 7100
+    }];
+    var backGroundData = [],
+        nameData = [],
+        valueData = [],
+        maxValue = 0,
+        len = data.length;
+    for (var i = 0; i < len; i++) {
+        if (data[i].value > maxValue) {
+            maxValue = data[i].value;
+        }
+    }
+    for (var i = 0; i < len; i++) {
+        backGroundData.push(maxValue * 1.1);
+        nameData.push(data[i].name);
+        valueData.push(data[i].value);
+    }
+    
+    var option = {
+        grid: {
+            left: '10%',
+            top: '5%',
+            bottom: '1%',
+        },
+        tooltip: {
+            show: true,
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow',
+            },
+            formatter: '{b}：{c}',
+            textStyle: {
+                fontSize: "20"
+            }
+        },
+        xAxis: {
+            type: 'value',
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'category',
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            data: nameData
+        },
+        series: [{
+                barWidth: 6,
+                z: 10,
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(
+                        1, 0, 0, 0,   //左、下、右、上
+                        [{
+                            offset: 0,
+                            color: '#32fd99' /*#0085FA*/
+                        }, {
+                            offset: 1,
+                            color: '#0738ff' /*#00BBFD*/
+                        }])
+                },
+                label: {
+                    show: true,
+                    fontSize: 10,
+                    // distance: 10,
+                    position: "left",
+                    formatter: "{b}",
+                    // offset: [0, -10],
+                    color: '#FFFFFF'
+                },
+                type: 'bar',
+                data: valueData
+            },
+            {
+                type: 'bar',
+                barGap: '-100%',
+                barWidth: 6,
+                animation: false,
+                z: -1,
+                itemStyle: {
+                    color: '#153963'
+                },
+                label: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 10,
+                    color: "#00fcff",
+                    formatter: function(param) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (param.name == data[i].name) {
+                                return data[i].value + " kg";
+                            }
+                        }
+                    }
+                },
+                data: backGroundData
+            }
+        ]
+    };
 
 
     var chart11 = echarts.init(document.getElementById('chart11'));
@@ -1305,6 +1458,8 @@ function initMapChart(){
   }
 
 initChart1();
+
+initChart2();
 
 initChart3();
 
