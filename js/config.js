@@ -8,6 +8,7 @@ var config={
         getTypeWeightRA:"/cp/dustbin/getTypeWeightRA",//回收重量占比显示
         getSevenWeight:"/cp/dustbin/getSevenWeight",//7日
 		getCommunityWeight:"/cp/dustbin/getCommunityWeight",//重量排行榜
+		getPeopleUseCount:"/cp/people/getPeopleUseCount",//居次
 	},
 	location:{
 		title:"北京天坛花园",

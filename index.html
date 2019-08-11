@@ -8,15 +8,6 @@
 		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 	<title>大屏数据可视化 - 模板</title>
-	<script src="/js/jquery-3.3.1.min.js"></script>
-	<script src="/js/echarts.min.js"></script>
-	<script src="/js/bmap.min.js"></script>
-	<script src="http://api.map.baidu.com/api?v=3.0&ak=9Xs7GwgL2ecX1R72eOd9cQscSOVNvHme"></script>
-	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-	<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
-	<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
-	<script src="/js/config.js"></script>
-	<script src="/js/app.js"></script>
 	<link rel="stylesheet" href="css/app.css" />
 </head>
 
@@ -59,7 +50,7 @@
 				</div>
 				<div class="xpanel-wrapper xpanel-wrapper-c-c">
 					<div class="xpanel xpanel-c-c">
-						<div class="xpanel-c-c-t">
+						<div class="xpanel-c-c-t" id="c-c-tx">
 							<div class="item">
 								<div class="item-desc">
 									9287428<b>人</b>
@@ -75,10 +66,10 @@
 								<div class="item-title">
 									总重量
 								</div>
-							</div >
+							</div>
 
 							<div class="item">
-								<div class="item-desc"  style="color: #ddba08">
+								<div class="item-desc" style="color: #ddba08">
 									66666<b>分</b>
 								</div>
 								<div class="item-title">
@@ -97,7 +88,7 @@
 
 							<div class="item">
 								<div class="item-desc" style="color: #3580ff">
-									200000次
+									200000<b>次</b>
 								</div>
 								<div class="item-title">
 									总投放次数
@@ -105,7 +96,7 @@
 							</div>
 
 						</div>
-						<div class="xpanel-c-c-b">
+						<div class="xpanel-c-c-b" id="c-c-tx1">
 							<div class="xpanel-c-c-b-title">已回收纸类物品：<span>59063</span>kg，相当于节约了</div>
 							<div class="xpanel-c-c-b-container">
 								<div class="c-b-item">
@@ -113,17 +104,17 @@
 									<div><span>1004</span>颗大树</div>
 								</div>
 								<div class="c-b-item">
-										<img src="./img/paper.png" alt="">
-										<div><span>47</span>吨的纸</div>
-									</div>
-									<div class="c-b-item">
-											<img src="./img/light.png" alt="">
-											<div><span>35438</span>度的电</div>
-										</div>
-										<div class="c-b-item">
-												<img src="./img/water.png" alt="">
-												<div><span>5906</span>立方的水</div>
-											</div>
+									<img src="./img/paper.png" alt="">
+									<div><span>47</span>吨的纸</div>
+								</div>
+								<div class="c-b-item">
+									<img src="./img/light.png" alt="">
+									<div><span>35438</span>度的电</div>
+								</div>
+								<div class="c-b-item">
+									<img src="./img/water.png" alt="">
+									<div><span>5906</span>立方的水</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -194,7 +185,16 @@
 			</div>
 		</div>
 	</div>
-	
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/echarts.min.js"></script>
+	<script src="/js/bmap.min.js"></script>
+	<script src="http://api.map.baidu.com/api?v=3.0&ak=9Xs7GwgL2ecX1R72eOd9cQscSOVNvHme"></script>
+	<script src="https://cdn.bootcss.com/underscore.js/1.9.1/underscore-min.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script> -->
+	<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script> -->
+	<script src="/js/config.js"></script>
+	<script src="/js/app.js"></script>
 </body>
 
 </html>
